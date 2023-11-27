@@ -25,20 +25,6 @@ const productsData = [
       { name: 'XL', additionalPrice: 4 },
     ],
   },
-  {
-    id: 3,
-    name: 'kodilla',
-    title: 'Kodilla shirt',
-    basePrice: 30,
-    colors: ['white', 'black', 'red'],
-    sizes: [
-      { name: 'S', additionalPrice: 0 },
-      { name: 'M', additionalPrice: 2 },
-      { name: 'L', additionalPrice: 3 },
-      { name: 'XL', additionalPrice: 4 },
-      { name: 'sx', additionalPrice: 4 },
-    ],
-  },
 ];
 
 export default productsData;
