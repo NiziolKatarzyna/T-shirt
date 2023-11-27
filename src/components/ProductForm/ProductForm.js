@@ -15,7 +15,6 @@ const ProductForm = (props) => {
         colors={props.colors}
         currentColor={props.currentColor}
         setCurrentColor={props.setCurrentColor}
-        prepareColorClassName={props.prepareColorClassName}
       />
 
       <Button className={styles.button} type='button'>

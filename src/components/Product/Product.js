@@ -9,11 +9,7 @@ import ProductForm from '../ProductForm/ProductForm';
 const Product = (props) => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
   const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
-  const prepareColorClassName = (color) => {
-    return styles[
-      'color' + color[0].toUpperCase() + color.substr(1).toLowerCase()
-    ];
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Podsumowanie produktu:');
@@ -52,7 +48,6 @@ const Product = (props) => {
           setCurrentSize={setCurrentSize}
           currentColor={currentColor}
           setCurrentColor={setCurrentColor}
-          prepareColorClassName={prepareColorClassName}
           handleSubmit={handleSubmit}
         />
       </div>

@@ -2,6 +2,11 @@ import styles from './OptionColor.module.scss';
 import clsx from 'clsx';
 
 const OptionColor = (props) => {
+  const prepareColorClassName = (color) => {
+    return styles[
+      'color' + color[0].toUpperCase() + color.substr(1).toLowerCase()
+    ];
+  };
   return (
     <div className={styles.colors}>
       <h3 className={styles.optionLabel}>{props.currentColor}</h3>
@@ -11,7 +16,7 @@ const OptionColor = (props) => {
             <button
               type='button'
               className={clsx(
-                props.prepareColorClassName(color),
+                prepareColorClassName(color),
                 color === props.currentColor && styles.active
               )}
               onClick={(e) => props.setCurrentColor(color)}
