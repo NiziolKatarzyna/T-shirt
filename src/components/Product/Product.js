@@ -2,7 +2,7 @@ import styles from './Product.module.scss';
 import clsx from 'clsx';
 
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ProductImage from '../ProductImage/ProductImage';
 import ProductForm from '../ProductForm/ProductForm';
 
@@ -14,19 +14,17 @@ const Product = (props) => {
     e.preventDefault();
     console.log('Podsumowanie produktu:');
     console.log('Nazwa produktu:', props.title);
-    console.log('Cena końcowa:', getPrice());
+    console.log('Cena końcowa:', Price);
     console.log('sizes:', currentSize);
     console.log('colors:', currentColor);
   };
 
-  const getPrice = () => {
+  const Price = useMemo(() => {
     const additionalPrice = props.sizes.find(
       (size) => size.name === currentSize
     ).additionalPrice;
-
-    const finalPrice = props.basePrice + additionalPrice;
-    return finalPrice;
-  };
+    return props.basePrice + additionalPrice;
+  }, [props.basePrice, props.sizes, currentSize]);
 
   return (
     <article className={styles.product}>
@@ -39,7 +37,7 @@ const Product = (props) => {
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
-          <span className={styles.price}>Price:{getPrice()}</span>
+          <span className={styles.price}>Price:{Price}</span>
         </header>
         <ProductForm
           sizes={props.sizes}
