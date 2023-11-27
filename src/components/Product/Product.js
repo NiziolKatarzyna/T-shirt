@@ -1,9 +1,10 @@
 import styles from './Product.module.scss';
 import clsx from 'clsx';
-import Button from '../Button/Button';
+
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import ProductImage from '../ProductImage/ProductImage';
+import ProductForm from '../ProductForm/ProductForm';
 
 const Product = (props) => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
@@ -44,46 +45,16 @@ const Product = (props) => {
           <h2 className={styles.name}>{props.title}</h2>
           <span className={styles.price}>Price:{getPrice()}</span>
         </header>
-        <form>
-          <div className={styles.sizes}>
-            <h3 className={styles.optionLabel}>{currentSize}</h3>
-            <ul className={styles.choices}>
-              {props.sizes.map((size) => (
-                <li key={size.name}>
-                  <button
-                    type='button'
-                    className={clsx({
-                      [styles.active]: size.name === currentSize,
-                    })}
-                    onClick={(e) => setCurrentSize(size.name)}
-                  >
-                    {size.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className={styles.colors}>
-            <h3 className={styles.optionLabel}>{currentColor}</h3>
-            <ul className={styles.choices}>
-              {props.colors.map((color) => (
-                <li key={color}>
-                  <button
-                    type='button'
-                    className={clsx(
-                      prepareColorClassName(color),
-                      color === currentColor && styles.active
-                    )}
-                    onClick={(e) => setCurrentColor(color)}
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <Button className={styles.button} type='button'>
-            <span className='fa fa-shopping-cart' onClick={handleSubmit} />
-          </Button>
-        </form>
+        <ProductForm
+          sizes={props.sizes}
+          colors={props.colors}
+          currentSize={currentSize}
+          setCurrentSize={setCurrentSize}
+          currentColor={currentColor}
+          setCurrentColor={setCurrentColor}
+          prepareColorClassName={prepareColorClassName}
+          handleSubmit={handleSubmit}
+        />
       </div>
     </article>
   );
