@@ -5,7 +5,7 @@ import OptionSize from '../OptionSize/OptionSize';
 import OptionColor from '../OptionColor/OptionColor';
 const ProductForm = (props) => {
   return (
-    <form>
+    <>
       <OptionSize
         sizes={props.sizes}
         currentSize={props.currentSize}
@@ -17,10 +17,10 @@ const ProductForm = (props) => {
         setCurrentColor={props.setCurrentColor}
       />
 
-      <Button className={styles.button} type='button'>
+      <Button className={styles.button}>
         <span className='fa fa-shopping-cart' onClick={props.handleSubmit} />
       </Button>
-    </form>
+    </>
   );
 };
 

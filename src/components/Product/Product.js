@@ -8,23 +8,20 @@ import ProductForm from '../ProductForm/ProductForm';
 
 const Product = (props) => {
   const [currentColor, setCurrentColor] = useState(props.colors[0]);
-  const [currentSize, setCurrentSize] = useState(props.sizes[0].name);
+  const [currentSize, setCurrentSize] = useState(props.sizes[0]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Podsumowanie produktu:');
     console.log('Nazwa produktu:', props.title);
-    console.log('Cena końcowa:', Price);
-    console.log('sizes:', currentSize);
-    console.log('colors:', currentColor);
+    console.log('Cena końcowa:', price);
+    console.log('size:', currentSize.name);
+    console.log('color:', currentColor);
   };
 
-  const Price = useMemo(() => {
-    const additionalPrice = props.sizes.find(
-      (size) => size.name === currentSize
-    ).additionalPrice;
-    return props.basePrice + additionalPrice;
-  }, [props.basePrice, props.sizes, currentSize]);
+  const price = useMemo(() => {
+    return props.basePrice + currentSize.additionalPrice;
+  }, [props.basePrice, currentSize.additionalPrice]);
 
   return (
     <article className={styles.product}>
@@ -37,7 +34,7 @@ const Product = (props) => {
       <div>
         <header>
           <h2 className={styles.name}>{props.title}</h2>
-          <span className={styles.price}>Price:{Price}</span>
+          <span className={styles.price}>Price:{price}</span>
         </header>
         <ProductForm
           sizes={props.sizes}
